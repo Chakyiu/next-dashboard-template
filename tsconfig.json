@@ -31,6 +31,9 @@
       "@constants/*": [
         "./constants/*"
       ],
+      "@contexts/*": [
+        "./contexts/*"
+      ],
       "@styles/*": [
         "./styles/*"
       ]
@@ -40,7 +43,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "store/index.tss"
   ],
   "exclude": [
     "node_modules"

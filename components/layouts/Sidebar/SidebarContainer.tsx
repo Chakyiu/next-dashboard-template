@@ -1,14 +1,14 @@
 'use client'
 
 // ** Context Imports
-import { useSidebar } from './SidebarContext'
+import { useSetting } from '@contexts/SettingContext'
 
 // ** Components Imports
 import SidebarHeader from './SidebarHeader'
 import SidebarFooter from './SidebarFooter'
 
 const SidebarContainer = () => {
-  const { isSidebarOpened, isSidebarExpanded } = useSidebar()
+  const [{ isSidebarOpened, isSidebarExpanded }] = useSetting()
 
   return (
     <div className={`${isSidebarExpanded ? 'sidebar-expanded' : ''}`}>
@@ -18,11 +18,11 @@ const SidebarContainer = () => {
           isSidebarOpened ? 'translate-x-0' : '-translate-x-64'
         }`}
       >
-        <SidebarHeader isSidebarOpened={isSidebarOpened} />
+        <SidebarHeader />
 
         <div className=''></div>
 
-        <SidebarFooter isSidebarExpanded={isSidebarExpanded} />
+        <SidebarFooter />
       </div>
     </div>
   )

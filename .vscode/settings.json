@@ -12,5 +12,8 @@
   "typescript.preferences.quoteStyle": "single",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "svg.preview.background": "transparent"
+  "svg.preview.background": "transparent",
+  "cSpell.words": [
+    "zustand"
+  ]
 }

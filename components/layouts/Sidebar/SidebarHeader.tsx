@@ -2,30 +2,34 @@
 
 // ** Lib Imports
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 // ** Context Imports
-import { useSidebar } from './SidebarContext'
+import { useSetting, ISetting, getNewDocumentCookie } from '@contexts/SettingContext'
 
-interface Props {
-  isSidebarOpened: boolean | null
-}
+const SidebarHeader = () => {
+  const router = useRouter()
+  const [setting, setSetting] = useSetting()
 
-const SidebarHeader = ({ isSidebarOpened }: Props) => {
-  const { setIsSidebarOpened } = useSidebar()
+  const changeSidebarOpened = () => {
+    const newCookie: ISetting = {
+      ...setting,
+      isSidebarOpened: !setting.isSidebarOpened
+    }
 
-  const triggerSidebarOpened = () => {
-    setIsSidebarOpened(!isSidebarOpened)
+    setSetting(newCookie)
 
-    document.cookie = `_is_sidebar_opened=${!isSidebarOpened}; path=/; max-age=${60 * 60 * 24 * 30}};`
+    document.cookie = getNewDocumentCookie(newCookie)
+    router.refresh()
   }
 
   return (
     <div className='flex justify-between mb-10 pr-3 sm:px-2'>
       <button
         className='lg:hidden text-slate-500 hover:text-slate-400'
-        onClick={() => triggerSidebarOpened()}
+        onClick={changeSidebarOpened}
         aria-controls='sidebar'
-        aria-expanded={isSidebarOpened || false}
+        aria-expanded={setting.isSidebarOpened || false}
       >
         <span className='sr-only'>Close sidebar</span>
         <svg className='w-6 h-6 fill-current' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
@@ -42,8 +46,8 @@ const SidebarHeader = ({ isSidebarOpened }: Props) => {
               id='svg_3'
               cy='20'
               cx='20'
-              stroke-dasharray='5,2,2,2,2,2'
-              stroke-width='0'
+              strokeDasharray={'5,2,2,2,2,2'}
+              strokeWidth='0'
               stroke='#000'
               fill='#ffffff'
             />
@@ -53,8 +57,8 @@ const SidebarHeader = ({ isSidebarOpened }: Props) => {
               id='svg_2'
               cy='12'
               cx='12'
-              stroke-dasharray='5,2,2,2,2,2'
-              stroke-width='0'
+              strokeDasharray={'5,2,2,2,2,2'}
+              strokeWidth='0'
               stroke='#000'
               fill='#000000'
             />
