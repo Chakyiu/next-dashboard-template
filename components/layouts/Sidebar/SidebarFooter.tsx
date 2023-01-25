@@ -6,6 +6,9 @@ import { useRouter } from 'next/navigation'
 // ** Context Imports
 import { useSetting, ISetting, getNewDocumentCookie } from '@contexts/SettingContext'
 
+// ** Icons Imports
+import { RxPinRight } from 'react-icons/rx'
+
 const SidebarFooter = () => {
   const router = useRouter()
   const [setting, setSetting] = useSetting()
@@ -26,10 +29,7 @@ const SidebarFooter = () => {
       <div className='px-3 py-2'>
         <button onClick={changeSidebarExpanded}>
           <span className='sr-only'>Expand / collapse sidebar</span>
-          <svg className='w-6 h-6 fill-current sidebar-expanded:rotate-180' viewBox='0 0 24 24'>
-            <path className='text-slate-400' d='M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z' />
-            <path className='text-slate-600' d='M3 23H1V1h2z' />
-          </svg>
+          <RxPinRight className='w-6 h-6 text-gray-400 sidebar-expanded:rotate-180 transition duration-200' />
         </button>
       </div>
     </div>
