@@ -2,28 +2,21 @@
 
 // ** Lib Imports
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-
-// ** Context Imports
-import { useSetting, ISetting, getNewDocumentCookie } from '@contexts/SettingContext'
 
 // ** Icons Imports
 import { RxArrowLeft } from 'react-icons/rx'
 
+// ** Store Imports
+import { useSetting } from '@store/useSetting'
+
 const SidebarHeader = () => {
-  const router = useRouter()
-  const [setting, setSetting] = useSetting()
+  const { setting, updateSetting } = useSetting()
 
   const changeSidebarOpened = () => {
-    const newCookie: ISetting = {
+    updateSetting({
       ...setting,
       isSidebarOpened: !setting.isSidebarOpened
-    }
-
-    setSetting(newCookie)
-
-    document.cookie = getNewDocumentCookie(newCookie)
-    router.refresh()
+    })
   }
 
   return (

@@ -34,6 +34,9 @@
       "@contexts/*": [
         "./contexts/*"
       ],
+      "@store/*": [
+        "./store/*"
+      ],
       "@styles/*": [
         "./styles/*"
       ]

@@ -1,27 +1,19 @@
 'use client'
 
-// ** Lib Imports
-import { useRouter } from 'next/navigation'
-
-// ** Context Imports
-import { useSetting, ISetting, getNewDocumentCookie } from '@contexts/SettingContext'
-
 // ** Icons Imports
 import { RxPinRight } from 'react-icons/rx'
 
+// ** Store Imports
+import { useSetting } from '@store/useSetting'
+
 const SidebarFooter = () => {
-  const router = useRouter()
-  const [setting, setSetting] = useSetting()
+  const { setting, updateSetting } = useSetting()
 
   const changeSidebarExpanded = () => {
-    const newCookie: ISetting = {
+    updateSetting({
       ...setting,
       isSidebarExpanded: !setting.isSidebarExpanded
-    }
-    setSetting(newCookie)
-
-    document.cookie = getNewDocumentCookie(newCookie)
-    router.refresh()
+    })
   }
 
   return (

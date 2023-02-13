@@ -1,10 +1,10 @@
 'use client'
 
-// ** Context Imports
-import { useSetting } from '@contexts/SettingContext'
+// ** Store Imports
+import { useSetting } from '@store/useSetting'
 
 const SidebarBackdrop = () => {
-  const [{ isSidebarOpened }] = useSetting()
+  const isSidebarOpened = useSetting(state => state.setting.isSidebarOpened)
 
   return (
     <div
